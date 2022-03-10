@@ -1,4 +1,7 @@
 import { createConnection } from 'typeorm';
+import { Banker } from './entities/Banker';
+import { Client } from './entities/Client';
+import {Transaction} from './entities/Transaction';
 
 const main = async () =>{
     try {
@@ -8,7 +11,9 @@ const main = async () =>{
             port: 5432,
             username: 'typeorm_user',
             password: 'password',
-            database: 'typeormcourse'
+            database: 'typeormcourse',
+            entities: [Client, Banker, Transaction],
+            synchronize: true
         });
         console.log('Connected to DB');
     } catch (error) {

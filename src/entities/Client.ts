@@ -7,7 +7,8 @@ import { Person } from './utils/Person';
 export class Client extends Person {
 
   @Column({
-    type: 'numeric',
+    type: 'real',
+    default: 0
   })
   balance: number;
 
@@ -33,7 +34,7 @@ export class Client extends Person {
   transactions: Transaction[]
 
   @ManyToMany(
-      () => Banker
+      (type) => Banker, {cascade: true}
   )
   bankers: Banker[]
 

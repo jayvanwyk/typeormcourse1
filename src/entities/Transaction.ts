@@ -18,7 +18,8 @@ export class Transaction extends BaseEntity{
     transaction_type: string;
 
     @Column({
-        type: 'numeric'
+        type: 'real',
+        default: 0.00
     })
     amount: number;
 
@@ -27,10 +28,10 @@ export class Transaction extends BaseEntity{
 
     @ManyToOne(
         () => Client,
-        client => client.transactions
+        client => client.transactions,{onDelete: 'CASCADE'}
     )
     @JoinColumn({
         name: 'client_id'
     })
-    client: Client
+    client: Client;
 }

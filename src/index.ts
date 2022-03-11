@@ -2,10 +2,13 @@ import { createConnection } from 'typeorm';
 import { Banker } from './entities/Banker';
 import { Client } from './entities/Client';
 import {Transaction} from './entities/Transaction';
+import 'reflect-metadata';
 
 import express from 'express';
 import { createClientRouter } from './routes/create_clients';
 import { createBankerRouter } from './routes/create_banker';
+import { createTransactionRouter } from './routes/create_transaction';
+import { connectBankerToClientRouter } from './routes/connectBankerToClient';
 
 const app = express();
 
@@ -24,8 +27,11 @@ const main = async () =>{
         console.log('Connected to DB');
         
         app.use(express.json());
+        
         app.use(createClientRouter);
         app.use(createBankerRouter);
+        app.use(createTransactionRouter);
+        app.use(connectBankerToClientRouter)
 
 
         app.listen(8080, () => {

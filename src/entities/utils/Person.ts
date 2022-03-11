@@ -1,7 +1,7 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from 'typeorm';
 
 
-Entity
+Entity()
 export class Person extends BaseEntity{
     @PrimaryColumn({ type: 'uuid' })
     id: string;
